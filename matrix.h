@@ -36,8 +36,11 @@ void insertArrayF(ArrayF *a, float element);
 void freeArray(Array *a);
 void freeArrayF(ArrayF *a);
 void newMatrix(matrix *m);
-void setValue(matrix *mat, Array *m, Array *n, ArrayF *value);
+int setValue(matrix *mat, Array *m, Array *n, ArrayF *value);
 int checkValue(matrix *mat, Array m, Array n, ArrayF value);
 int deleteMatrix(matrix *mat, Array *m, Array *n, ArrayF *value);
+void rowSum(matrix *mat, Array m, ArrayF value);
+void columnSum(matrix *mat, Array n, ArrayF value);
+void displayMatrix(matrix *mat, Array m);
 
 #endif

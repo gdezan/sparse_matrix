@@ -18,9 +18,12 @@ int main()
         system(CLEAR);
         printf("\n Matriz Esparsa");
         printf("\n\n 1 - Nova Matriz");
-        printf("\n 2 - Atribuir Valor");
-        printf("\n 3 - Conferir Valor");
-        printf("\n 4 - Deletar Matriz");
+        printf("\n 2 - Deletar Matriz");
+        printf("\n 3 - Atribuir Valor a Elemento");
+        printf("\n 4 - Conferir Valor de um Elemento");
+        printf("\n 5 - Conferir Soma dos Elementos de uma Linha");
+        printf("\n 6 - Conferir Soma dos Elementos de uma Coluna");
+        printf("\n 7 - Consultar Matriz");
         printf("\n\n\n 0 - Sair\n\n");
         int input = intInput();
         
@@ -29,13 +32,22 @@ int main()
                 newMatrix(&mat);
                 break;
             case 2:
-                setValue(&mat, &m, &n , &value);
+                deleteMatrix(&mat, &m, &n , &value);
                 break;
             case 3:
-                checkValue(&mat, m, n ,value);
+                setValue(&mat, &m, &n , &value);
                 break;
             case 4:
-                deleteMatrix(&mat, &m, &n , &value);
+                checkValue(&mat, m, n ,value);
+                break;
+            case 5:
+                rowSum(&mat, m, value);
+                break;
+            case 6:
+                columnSum(&mat, n, value);
+                break;
+            case 7:
+                displayMatrix(&mat, m);
                 break;
             case 0:
                 return 0;

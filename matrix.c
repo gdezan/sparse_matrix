@@ -105,20 +105,46 @@ void newMatrix(matrix *m){
 }
 
 
-void setValue(matrix *mat, Array *m, Array *n, ArrayF *value){
+int setValue(matrix *mat, Array *m, Array *n, ArrayF *value){
     if (mat->init == 1){
+        int found = -1;
         printf("\nDigite o valor a ser atribuido: ");
         float val = floatInput();
         
-        printf("Digite a linha que se encontrara o valor: ");
+        printf("Digite a linha que se encontrara o elemento: ");
         int row = intInput();
 
-        printf("Digite a coluna que se encontrara o valor: ");
+        printf("Digite a coluna que se encontrara o elemento: ");
         int col = intInput();
         
+        for (int i = 0; i < m->used; i++){
+            if(row == m->array[i] && col == n->array[i]){
+                found = i;
+            }
+        }
 
-        if (row < 0 || row >= mat->rows || col < 0 || col >= mat->columns){
+        if (row <= 0 || row > mat->rows || col <= 0 || col > mat->columns){
             printf("\nElemento fora do escopo da matriz. Valor nao atribuido.");
+        } else if (found != -1){
+            printf("\nEsse elemento ja possui um valor diferente de 0.\n");
+            printf("Deseja substitui-lo? (Valor antigo: %.2f) (S/N): ", value->array[found]);
+            char prompt;
+            while (1){
+                fflush(stdin);
+                prompt = getchar();
+                getchar();
+                if (prompt == 'S' || prompt == 's' || prompt == 'n' || prompt == 'N'){
+                    break;
+                }
+                printf("\nPor favor digite \"S\" ou \"N\"\n");                      
+            }                                                                       
+            if (prompt == 'N' || prompt == 'n'){
+                printf("\nValor antigo mantido.");
+                tStop();                                   
+                return 0;              
+            }
+            value->array[found] = val;
+            printf("\nValor antigo substituido.");
         } else {
             insertArray(n, col);
             insertArray(m, row);
@@ -129,7 +155,7 @@ void setValue(matrix *mat, Array *m, Array *n, ArrayF *value){
         printf("\nMatriz nao inicializada.");
     }
     tStop();
-
+    return 0;
 }
 
 int checkValue(matrix *mat, Array m, Array n, ArrayF value){
@@ -139,7 +165,7 @@ int checkValue(matrix *mat, Array m, Array n, ArrayF value){
         printf("Digite a coluna do elemento: ");
         int col = intInput();
 
-        if (row < 0 || row >= mat->rows || col < 0 || col >= mat->columns){
+        if (row <= 0 || row > mat->rows || col <= 0 || col > mat->columns){
             printf("\nElemento fora do escopo da matriz.");
             tStop();
             return 0;
@@ -196,5 +222,57 @@ int deleteMatrix(matrix *mat, Array *m, Array *n, ArrayF *value){
     }
     tStop();
     return 0;
+}
+
+void rowSum(matrix *mat, Array m, ArrayF value){
+    if (mat->init == 1){
+        printf("\nDigite a linha para consultar a soma dos elementos: ");
+        int row = intInput();
+        if (row <= mat->rows && row > 0){
+            float sum = 0;
+            for (int i = 0; i < m.used; i++){
+                if(row == m.array[i]){
+                    sum += value.array[i];
+                }
+            }
+            printf("\nValor da soma da linha %d: %.2f", row, sum);
+        } else {
+            printf("\nLinha fora do escopo da matriz.");
+        }
+    } else {
+        printf("\nMatriz nao inicializada.");
+    }
+    tStop();
+}
+
+void columnSum(matrix *mat, Array n, ArrayF value){
+    if (mat->init == 1){
+        printf("\nDigite a coluna para consultar a soma dos elementos: ");
+        int col = intInput();
+        if (col <= mat->columns && col > 0){
+            float sum = 0;
+            for (int i = 0; i < n.used; i++){
+                if(col == n.array[i]){
+                    sum += value.array[i];
+                }
+            }
+            printf("\nValor da soma da coluna %d: %.2f", col, sum);
+        } else {
+            printf("\nColuna fora do escopo da matriz.");
+        }
+    } else {
+        printf("\nMatriz nao inicializada.");
+    }
+    tStop();
+}
+
+void displayMatrix(matrix *mat, Array m){
+    if (mat->init == 1){
+        printf("\nDimensoes da matriz (m x n): %d x %d", mat->rows, mat->columns);
+        printf("\nNumero de elementos nao nulos: %d", m.used);
+    } else {
+        printf("\nMatriz nao inicializada.");
+    }
+    tStop();
 }
  
