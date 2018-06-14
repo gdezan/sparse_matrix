@@ -266,10 +266,16 @@ void columnSum(matrix *mat, Array n, ArrayF value){
     tStop();
 }
 
-void displayMatrix(matrix *mat, Array m){
+void displayMatrix(matrix *mat, ArrayF val){
     if (mat->init == 1){
         printf("\nDimensoes da matriz (m x n): %d x %d", mat->rows, mat->columns);
-        printf("\nNumero de elementos nao nulos: %d", m.used);
+        int zeroes = 0;
+        for (int i = 0; i < val.used; i++){
+            if (val.array[i] == 0){
+                zeroes++;
+            }
+        }
+        printf("\nNumero de elementos nao nulos: %d", val.used - zeroes);
     } else {
         printf("\nMatriz nao inicializada.");
     }

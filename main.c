@@ -47,7 +47,7 @@ int main()
                 columnSum(&mat, n, value);
                 break;
             case 7:
-                displayMatrix(&mat, m);
+                displayMatrix(&mat, value);
                 break;
             case 0:
                 return 0;

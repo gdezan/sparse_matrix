@@ -41,6 +41,6 @@ int checkValue(matrix *mat, Array m, Array n, ArrayF value);
 int deleteMatrix(matrix *mat, Array *m, Array *n, ArrayF *value);
 void rowSum(matrix *mat, Array m, ArrayF value);
 void columnSum(matrix *mat, Array n, ArrayF value);
-void displayMatrix(matrix *mat, Array m);
+void displayMatrix(matrix *mat, ArrayF val);
 
 #endif
