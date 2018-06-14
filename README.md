@@ -20,7 +20,7 @@ projeto, abrir os arquivos do projeto recursivamente e usar a opção "Build and
 
 Qualquer outro compilador de C além do GCC pode ser utlizado, basta ajustar o comando de compilação de acordo com o compilador usado.
 
-### Mais informações como informações sobre a programação do jogo e sobre como jogar estão disponíveis no arquivo ``relatorio.pdf``
+### Mais informações como informações sobre o programa estão disponíveis no arquivo ``relatorio.pdf``
 
 ## Autor
 Gabriel de Andrade Dezan
